@@ -17,7 +17,7 @@ Live subnet: **[reppo.ai/subnets/cmnhuowns000bic04e16t6735](https://reppo.ai/sub
 **Who runs it?**  
 The datanet is built and maintained by [@Hottubleed](https://x.com/Hottubleed) — with live bots already contributing data in the Virtuals Protocol $100K weekly competition.
 
-This isn't a speculative project. The pipeline you're using is the exact same one running on live bots, submitting pods every epoch.
+This isn't a speculative project. The pipeline you're using is the exact same one running on live bots, actively contributing data to the datanet.
 
 ---
 

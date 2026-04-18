@@ -159,11 +159,11 @@ After each build, you'll see output like:
 ────────────────────────────────────────────
 ```
 
-**This step is manual — you publish your own pods.** Go to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735), connect your wallet, and fill in the publication form for each pod. About 5 minutes of work whenever you're ready to publish. See [`docs/REPPO.md`](docs/REPPO.md) for the full two-step publication flow (pin → register).
+**This step is manual — you publish your own pods.** Go to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735), connect your wallet, and fill in the publication form for each pod. About 5 minutes of work whenever you're ready to publish.
 
 > **Note:** The pipeline never auto-submits to Reppo. Your pods are yours — you decide when and what to publish.
 
-See [`docs/REPPO.md`](docs/REPPO.md) for the full submission walkthrough and reward breakdown.
+See [`docs/REPPO.md`](docs/REPPO.md) for the full two-step publication flow (pin → register) and reward breakdown.
 
 ---
 
