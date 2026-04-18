@@ -52,11 +52,15 @@ Reppo rewards are based on **data quality and verifiability**, not just trade vo
 
 ---
 
-## How to Submit Your CIDs to Reppo
+## Publishing a Pod to Reppo
 
-> **Pod submission is always manual — you publish your own pods. The pipeline never auto-submits on your behalf.**
+> **Pod publication is always manual — you publish your own pods. The pipeline never auto-submits on your behalf.**
 
-After `build_pods.py` runs, it prints your CIDs:
+Publishing a pod is a two-step process: **pin to IPFS first, then register the pod on Reppo**. Submitting your CID is part of step 2 — not the whole thing.
+
+### Step 1 — Build & pin your pod
+
+Run `build_pods.py`. It packages your epoch data, pins it to IPFS via Pinata, and prints your CIDs:
 
 ```
 ────────────────────────────────────────────
@@ -68,20 +72,19 @@ After `build_pods.py` runs, it prints your CIDs:
 ────────────────────────────────────────────
 ```
 
-**Submission steps:**
+At this point your data is on IPFS but **not yet published to the subnet**.
+
+### Step 2 — Register the pod on Reppo
 
 1. Go to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) and connect your wallet
-2. For each pod type, provide:
+2. For each pod, fill in the publication form:
    - **Title** — e.g., "T1 Trades Epoch 2026-04-18"
    - **Description** — brief summary of what's in this pod (required)
    - **CID** — your IPFS content identifier in HTTPS format, e.g., `https://ipfs.io/ipfs/bafybeig...` (required)
    - **Image** — optional but recommended: a thumbnail/logo for your pod
-3. Submit — your contribution is recorded on-chain
+3. Submit — your pod is registered on-chain and becomes part of the datanet
 
-**CID format:** The CID must be a valid IPFS HTTP gateway URL. When `build_pods.py` pins your pod, it returns a base CID (e.g., `bafybeig...`). Prepend `https://ipfs.io/ipfs/` to create the full URL:
-```
-https://ipfs.io/ipfs/bafybeigyour_cid_here
-```
+**CID format:** The CID field expects a full IPFS HTTP gateway URL. `build_pods.py` already prints it in the correct format (`https://ipfs.io/ipfs/{cid}`) — copy it directly.
 
 Reppo validates the pod schema and cross-references on-chain data where possible. If your trades are on Hyperliquid, they're fully verifiable.
 
