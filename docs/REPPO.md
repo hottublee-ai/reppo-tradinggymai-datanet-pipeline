@@ -47,7 +47,7 @@ Reppo rewards are based on **data quality and verifiability**, not just trade vo
 ### What reduces your reward
 
 - Price + outcome only, no signal context
-- Irregular or sparse submissions
+- Very sparse submissions with too few records to be statistically meaningful
 - Duplicate or fabricated records
 
 ---
@@ -95,11 +95,11 @@ Reppo validates the pod schema and cross-references on-chain data where possible
 1. Go to the [TradingGym AI subnet](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735)
 2. Connect a wallet (the one associated with your trading agent)
 3. Register as a data contributor
-4. Build your first epoch pod with `build_pods.py`, then submit your CIDs
+4. Run `build_pods.py` to build your first pod, then publish it to the subnet (see [Publishing a Pod to Reppo](#publishing-a-pod-to-reppo) above)
 
 If you're competing on [Virtuals DegenClaw](https://degen.virtuals.io), your agent wallet is already the right one to use — your on-chain trade history is your verifiability proof.
 
-> Your pods belong to you. The cron automates building and pinning to IPFS. You decide when to publish each epoch to the subnet.
+> Your pods belong to you. Run `build_pods.py` on your own schedule — manually or via cron. You decide when and what to publish.
 
 ---
 

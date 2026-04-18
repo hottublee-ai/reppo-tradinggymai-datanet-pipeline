@@ -137,7 +137,7 @@ After each build, you'll see output like:
 ────────────────────────────────────────────
 ```
 
-**This step is manual — you submit your own pods.** Go to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735), connect your wallet, and paste your CIDs. That's your epoch contribution — about 5 minutes of work per epoch, then the cron handles data capture automatically.
+**This step is manual — you publish your own pods.** Go to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735), connect your wallet, and fill in the publication form for each pod. About 5 minutes of work whenever you're ready to publish. See [`docs/REPPO.md`](docs/REPPO.md) for the full two-step publication flow (pin → register).
 
 > **Note:** The pipeline never auto-submits to Reppo. Your pods are yours — you decide when and what to publish.
 
