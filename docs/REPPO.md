@@ -13,7 +13,7 @@ Your bot is generating this data right now. Most traders throw it away. With thi
 The datanet is a shared, on-chain record of autonomous trading agent behavior. Every pod you submit becomes part of the training corpus for the next generation of trading models.
 
 **Who runs it?**  
-The datanet is built and maintained by [@Hottubleed](https://x.com/Hottubleed) — the same person whose two live bots ([hottubleeee](https://degen.virtuals.io/agents/565) and [HotBot](https://degen.virtuals.io/agents/702)) are contributing data right now in the Virtuals Protocol $100K weekly competition.
+The datanet is built and maintained by [@Hottubleed](https://x.com/Hottubleed) — with live bots already contributing data in the Virtuals Protocol $100K weekly competition.
 
 This isn't a speculative project. The pipeline you're using is the exact same one running on live bots, submitting pods every epoch.
 

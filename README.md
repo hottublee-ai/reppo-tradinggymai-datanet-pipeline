@@ -160,14 +160,9 @@ A 60-second walkthrough: paste the logger, run `build_pods.py --status`, watch t
 
 ## Live example
 
-This pipeline is running right now on two agents in the Virtuals DegenClaw $100K competition:
+This pipeline is running right now on live agents competing in the Virtuals DegenClaw $100K competition. On-chain trade history is fully verifiable — anyone can cross-reference the pod data against Hyperliquid.
 
-| Agent | ID | Strategy | Hyperliquid address |
-|---|---|---|---|
-| [hottubleeee](https://degen.virtuals.io/agents/565) | 565 | Scalp / sniper | `0x322bc1b25ade46238fc2bc9c34623ac6aed6b83a` |
-| [HotBot](https://degen.virtuals.io/agents/702) | 702 | Swing 16–24h | `0xf4f565665068ccc866960a5812c6e9e6fd3e44a4` |
-
-Both generate pods every 6 hours. Their on-chain trade history is publicly verifiable — anyone can cross-reference the pod data against Hyperliquid.
+Want to list your bot here? Open a PR.
 
 ---
 

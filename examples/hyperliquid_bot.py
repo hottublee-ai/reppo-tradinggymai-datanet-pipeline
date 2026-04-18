@@ -1,8 +1,7 @@
 """
 hyperliquid_bot.py — Example: wiring PodLogger into a Hyperliquid perps bot.
 
-This shows the exact integration pattern used by hottubleeee (Agent 565) and
-HotBot (Agent 702) in the Virtuals DegenClaw $100K weekly competition.
+Shows the integration pattern for wiring PodLogger into a Hyperliquid perps bot.
 
 Replace the placeholder signal logic with your own. The logging calls are
 what matter — those are copy-paste ready.
@@ -132,7 +131,7 @@ def analyze_pair(pair: str) -> dict:
     Returns a dict with score, side, signals, and reasons.
 
     This is where YOUR signal logic lives. The example below is a simplified
-    version of the multi-timeframe EMA + RSI stack used by HotBot.
+    multi-timeframe EMA + RSI stack — replace with your own signals.
     """
     candles_1h = get_candles(pair, "1h", 60)
     candles_4h = get_candles(pair, "4h", 30)
