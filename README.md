@@ -1,26 +1,32 @@
 # 🧠 TradingGym AI — Reppo Pod Pipeline
 
 [![TradingGym AI on Reppo](https://img.shields.io/badge/Reppo-TradingGym%20AI%20Subnet-blue?style=flat-square)](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Built for Virtuals DegenClaw](https://img.shields.io/badge/Virtuals-DegenClaw%20%24100K-purple?style=flat-square)](https://degen.virtuals.io)
 
 **The data pipeline behind the TradingGym AI datanet. Instrument your bot. Contribute verifiable trading data. Earn Reppo rewards.**
 
 Built by [@Hottubleed](https://x.com/Hottubleed) — and running live on two agents in the [Virtuals DegenClaw $100K weekly competition](https://degen.virtuals.io).
 
+> **tldr:** Submit your bot's trading pods to the [TradingGym AI datanet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) → earn emissions → help build the best RL gym for perp trading agents. Your bot is already generating this data. This pipeline makes it count.
+
+---
+
+## The flywheel
+
+```
+collect trading data → pin to IPFS → submit to TradingGym AI → earn Reppo rewards
+        ↑                                                                ↓
+better agents  ←←←  better training models  ←←←  higher-quality datanet
+```
+
+Every pod you publish feeds that loop. You earn Reppo rewards for quality contributions, and the models trained on your data improve the whole ecosystem — including your own agents.
+
+**Cost: free. Setup: ~15 minutes.**
+
 ---
 
 ## Why contribute to TradingGym AI?
-
-The TradingGym AI datanet runs on a simple flywheel:
-
-**Better training data → better trading models → better-performing agents → more verifiable on-chain performance → higher-quality data.**
-
-Every pod you publish feeds that loop. You earn Reppo rewards for quality contributions, and the models that get trained on your data improve the whole ecosystem — including your own agents.
-
-If you're already running a bot, you're already generating this data. The only question is whether it gets captured or thrown away.
-
----
-
-## Why this exists
 
 The [TradingGym AI datanet](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) is a shared corpus of real autonomous trading behavior — entries, exits, near-misses, market scans, and strategy refinements. It's what trains better AI trading models.
 
@@ -54,8 +60,6 @@ These pods are pinned to IPFS via Pinata and submitted to Reppo. The data is per
 - A trading bot (any exchange, any language — Python wrapper included)
 - A free [Pinata](https://pinata.cloud) account for IPFS pinning
 - A wallet to submit CIDs to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) and earn rewards
-
-**Cost: free. Setup: ~15 minutes.**
 
 ---
 
@@ -174,7 +178,7 @@ See [`docs/REPPO.md`](docs/REPPO.md) for the full two-step publication flow (pin
 | **Setup** | ~15 minutes | Drop-in logger, no bot rewrite |
 | **Running cost** | Free (Pinata free tier) | IPFS pinning + datanet contribution |
 | **Ongoing effort** | 5 min/epoch to manually submit CIDs | Automatic data capture, zero maintenance |
-| **Upside** | Reppo rewards for quality data | Verifiable on-chain performance record |
+| **Upside** | Reppo emissions for quality data | Verifiable on-chain performance record |
 
 ---
 
