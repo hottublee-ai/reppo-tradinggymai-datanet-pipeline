@@ -39,7 +39,7 @@ Reppo rewards are based on **data quality and verifiability**, not just trade vo
 ### What increases your reward
 
 - Full signal context in every record (not just price + outcome)
-- Regular cadence — 48h epochs submitted on schedule
+- Regular cadence — submit when your data is ready, not on a forced schedule
 - On-chain verifiability — your trades are cross-referenceable on Hyperliquid or another exchange
 - Diverse coverage — multiple pairs, multiple regimes
 - Consistent schema — records that validate against the pod schema
@@ -105,11 +105,16 @@ If you're competing on [Virtuals DegenClaw](https://degen.virtuals.io), your age
 
 ## Epoch Timing
 
-Epochs are **48 hours**. The cron in this repo runs `build_pods.py` every 6 hours, but only submits when enough data has accumulated (configurable). Best practice:
+Reppo uses **48-hour epochs** as its cadence — but you don't have to match it exactly. **Build and publish on whatever schedule works for you.**
 
-- Let the bot run for at least 24h before your first epoch
-- Build + pin every 48h
-- Submit CIDs to Reppo within 24h of generating them
+The pipeline is designed for on-demand use: run `build_pods.py` when you're ready and it builds from your accumulated data. There's no requirement to run it every 48h.
+
+Some rough guidance:
+
+- Let the bot run for at least 24h before your first build to accumulate meaningful data
+- More frequent submissions generally mean more reward opportunities, but quality matters more than frequency
+- Use `--hours` to control how far back the build looks (default: 48h, but you can set it to whatever fits your cadence)
+- Automate with cron if you want a regular schedule, or just run it manually when you're ready to publish
 
 ---
 

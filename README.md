@@ -20,7 +20,7 @@ This pipeline captures it, structures it into verifiable IPFS pods, and submits 
 
 ## How the datanet works
 
-Every contributor runs this pipeline alongside their bot. Every 48 hours, you generate up to 4 pods:
+Every contributor runs this pipeline alongside their bot. When you're ready, you generate up to 4 pods:
 
 | Pod | Tier | What it captures |
 |-----|------|-----------------|
@@ -99,10 +99,12 @@ logger.log_close(
 
 That's the full integration. Three calls. No bot rewrite required.
 
-### 4. Build and pin pods every epoch
+### 4. Build and pin pods on your schedule
+
+Run `build_pods.py` whenever you're ready. It builds from your accumulated data — no fixed schedule required.
 
 ```bash
-# Build last 48h epoch and pin to IPFS
+# Build from the last 48h of data (default) and pin to IPFS
 python3 build_pods.py
 
 # Preview without pinning
@@ -112,11 +114,13 @@ python3 build_pods.py --dry-run
 python3 build_pods.py --status
 ```
 
-### 5. Automate with cron
+### 5. Automate with cron (optional)
+
+If you want a regular automated cadence, add a cron entry. Otherwise just run `build_pods.py` manually when you want to publish.
 
 ```bash
-# Run every 6 hours — builds and pins when enough data has accumulated
-0 */6 * * * cd /path/to/reppo-tradinggymai-datanet-pipeline && python3 build_pods.py >> /tmp/pod_builder.log 2>&1
+# Example: run daily at midnight
+0 0 * * * cd /path/to/reppo-tradinggymai-datanet-pipeline && python3 build_pods.py >> /tmp/pod_builder.log 2>&1
 ```
 
 ### 6. Submit your CIDs to Reppo (manual step)

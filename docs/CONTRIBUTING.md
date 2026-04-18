@@ -18,7 +18,7 @@ Your data is valuable regardless of win rate. Near-misses (T2) are often *more* 
 - Full signal context in every record (not just entry price + outcome)
 - Honest near-misses — log signals you evaluated, not just ones you took
 - Consistent schema across epochs
-- Regular cadence — 48h epochs, pinned on schedule
+- Regular cadence — publish when your data is ready; more frequent is better but there's no forced schedule
 
 **Low quality (still accepted, lower reward):**
 - Price + outcome only, no signal context
