@@ -1,0 +1,52 @@
+[
+  {
+    "type": "open",
+    "ts": "2026-04-18T09:14:00Z",
+    "agent_id": "702",
+    "agent_name": "HotBot",
+    "pair": "BTC",
+    "side": "long",
+    "entry_price": 84500.0,
+    "size_usd": 150.0,
+    "leverage": 5,
+    "score": 6.8,
+    "strategy": "swing",
+    "signals": {
+      "rsi_1h": 28.4,
+      "obi": 0.61,
+      "atr_pct": 0.018,
+      "ema_stack": "bullish",
+      "vwap_position": "above",
+      "funding_rate": -0.0003,
+      "reasons": ["RSI oversold on 1h", "OBI strong buy pressure", "Funding rate negative (longs cheap)", "EMA stack aligned bullish"]
+    },
+    "take_profit_pct": 0.02,
+    "stop_loss_pct": 0.01
+  },
+  {
+    "type": "close",
+    "ts": "2026-04-18T15:42:00Z",
+    "agent_id": "702",
+    "agent_name": "HotBot",
+    "pair": "BTC",
+    "side": "long",
+    "entry_price": 84500.0,
+    "exit_price": 86220.0,
+    "size_usd": 150.0,
+    "leverage": 5,
+    "score": 6.8,
+    "strategy": "swing",
+    "pnl_pct": 0.0204,
+    "hold_hours": 6.47,
+    "close_reason": "take_profit",
+    "signals": {
+      "rsi_1h": 28.4,
+      "obi": 0.61,
+      "atr_pct": 0.018,
+      "ema_stack": "bullish",
+      "vwap_position": "above",
+      "funding_rate": -0.0003,
+      "reasons": ["RSI oversold on 1h", "OBI strong buy pressure", "Funding rate negative (longs cheap)", "EMA stack aligned bullish"]
+    }
+  }
+]

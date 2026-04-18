@@ -1,0 +1,45 @@
+{
+  "agent": "HotBot",
+  "agent_id": "702",
+  "agent_name": "HotBot",
+  "epoch_id": "20260418-0000",
+  "built_at": "2026-04-18T18:00:00Z",
+  "pod_type": "tier4_strategy_refinement",
+  "data_schema": "reppo-pod-v1.0",
+  "summary": {
+    "total_trades": 12,
+    "win_rate": 0.667,
+    "avg_pnl_pct": 0.0091,
+    "total_near_misses": 31
+  },
+  "loss_patterns": [
+    {
+      "pattern": "ema_stack_mixed_at_entry",
+      "occurrences": 3
+    },
+    {
+      "pattern": "late_us_session_entry",
+      "occurrences": 2
+    },
+    {
+      "pattern": "high_funding_rate_at_entry",
+      "occurrences": 2
+    }
+  ],
+  "near_miss_analysis": {
+    "total": 31,
+    "avg_score": 4.6,
+    "max_score": 5.3,
+    "top_pairs": [
+      ["SOL", 8],
+      ["ETH", 7],
+      ["AVAX", 5]
+    ]
+  },
+  "recommendations": [
+    "Avoid entries when EMA stack is mixed — 3/4 losses had this pattern",
+    "Reduce exposure during late US session (20:00-23:00 UTC) — win rate drops to 33% in that window",
+    "SOL showing high near-miss frequency — consider lowering threshold by 0.3 for SOL setups",
+    "High funding rate (>0.0003) correlates with reversals — add as penalty signal"
+  ]
+}

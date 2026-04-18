@@ -1,0 +1,22 @@
+[
+  {
+    "ts": "2026-04-18T09:00:00Z",
+    "agent_id": "702",
+    "agent_name": "HotBot",
+    "pairs_scanned": ["BTC", "ETH", "SOL", "AVAX", "LINK", "DOGE", "ADA", "ARB"],
+    "pairs_count": 8,
+    "regime": "trending",
+    "btc_dominance": 54.3,
+    "market_notes": "BTC breaking out above 84k resistance. Altcoins lagging. Risk-on sentiment. Funding rates turning negative across most pairs — longs cheap."
+  },
+  {
+    "ts": "2026-04-18T13:00:00Z",
+    "agent_id": "702",
+    "agent_name": "HotBot",
+    "pairs_scanned": ["BTC", "ETH", "SOL", "AVAX", "LINK", "DOGE", "ADA", "ARB"],
+    "pairs_count": 8,
+    "regime": "volatile",
+    "btc_dominance": 53.9,
+    "market_notes": "Post-breakout consolidation. ATR elevated on most pairs. ETH showing relative weakness vs BTC. Reducing position sizes until regime clarifies."
+  }
+]

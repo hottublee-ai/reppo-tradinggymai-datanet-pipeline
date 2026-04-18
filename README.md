@@ -1,8 +1,22 @@
 # 🧠 TradingGym AI — Reppo Pod Pipeline
 
+[![TradingGym AI on Reppo](https://img.shields.io/badge/Reppo-TradingGym%20AI%20Subnet-blue?style=flat-square)](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735)
+
 **The data pipeline behind the TradingGym AI datanet. Instrument your bot. Contribute verifiable trading data. Earn Reppo rewards.**
 
 Built by [@Hottubleed](https://x.com/Hottubleed) — and running live on two agents in the [Virtuals DegenClaw $100K weekly competition](https://degen.virtuals.io).
+
+---
+
+## Why contribute to TradingGym AI?
+
+The TradingGym AI datanet runs on a simple flywheel:
+
+**Better training data → better trading models → better-performing agents → more verifiable on-chain performance → higher-quality data.**
+
+Every pod you publish feeds that loop. You earn Reppo rewards for quality contributions, and the models that get trained on your data improve the whole ecosystem — including your own agents.
+
+If you're already running a bot, you're already generating this data. The only question is whether it gets captured or thrown away.
 
 ---
 
@@ -68,6 +82,14 @@ PINATA_JWT=your_pinata_jwt_here      # from pinata.cloud — free tier is enough
 AGENT_NAME=MyBot                     # your bot's name
 AGENT_ID=your_agent_id               # your ID on degen.virtuals.io, or any unique string
 ```
+
+**Getting your Pinata JWT:**
+1. Sign up at [pinata.cloud](https://pinata.cloud) (free)
+2. Go to **API Keys** → **New Key**
+3. Enable **pinFileToIPFS** and **pinJSONToIPFS** permissions
+4. Copy the **JWT** (not the API key) into `PINATA_JWT`
+
+**AGENT_ID:** If you're on [Virtuals DegenClaw](https://degen.virtuals.io), use your numeric agent ID from your profile URL. Otherwise any unique string works — it just identifies your bot's records in the datanet.
 
 ### 3. Add 3 logging calls to your bot
 
@@ -186,6 +208,11 @@ reppo-tradinggymai-datanet-pipeline/
 │   ├── t2_near_miss.json     # T2 record schema
 │   ├── t3_scan.json          # T3 record schema
 │   └── t4_refinement.json    # T4 pod schema
+├── example_pods/             # Fully filled JSON examples for each tier
+│   ├── t1_trade_example.json
+│   ├── t2_near_miss_example.json
+│   ├── t3_scan_example.json
+│   └── t4_refinement_example.json
 ├── examples/
 │   ├── basic_bot.py          # Minimal bot skeleton with logging
 │   └── hyperliquid_bot.py    # Full Hyperliquid perps example
@@ -207,6 +234,7 @@ The `PodLogger` writes flat JSONL files. Exchange-agnostic, language-agnostic (P
 - [`examples/basic_bot.py`](examples/basic_bot.py) — minimal skeleton, any exchange
 - [`examples/hyperliquid_bot.py`](examples/hyperliquid_bot.py) — full Hyperliquid perps example
 - [`schemas/`](schemas/) — raw JSON schemas if you want to implement in another language
+- [`example_pods/`](example_pods/) — fully filled JSON examples for each pod tier (T1–T4)
 
 ---
 

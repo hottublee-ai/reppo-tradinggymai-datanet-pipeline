@@ -1,0 +1,42 @@
+[
+  {
+    "ts": "2026-04-18T10:05:00Z",
+    "agent_id": "702",
+    "agent_name": "HotBot",
+    "pair": "ETH",
+    "side": "long",
+    "score": 4.8,
+    "threshold": 5.5,
+    "tier": 2,
+    "reason_not_traded": "score_4.8_below_threshold_5.5",
+    "signals": {
+      "rsi_1h": 35.1,
+      "obi": 0.42,
+      "atr_pct": 0.021,
+      "ema_stack": "mixed",
+      "vwap_position": "below",
+      "funding_rate": 0.0001,
+      "reasons": ["RSI mildly oversold", "OBI inconclusive", "EMA stack mixed — no clear trend"]
+    }
+  },
+  {
+    "ts": "2026-04-18T11:30:00Z",
+    "agent_id": "702",
+    "agent_name": "HotBot",
+    "pair": "SOL",
+    "side": "short",
+    "score": 5.1,
+    "threshold": 5.5,
+    "tier": 2,
+    "reason_not_traded": "max_positions_reached",
+    "signals": {
+      "rsi_1h": 71.2,
+      "obi": -0.55,
+      "atr_pct": 0.025,
+      "ema_stack": "bearish",
+      "vwap_position": "above",
+      "funding_rate": 0.0004,
+      "reasons": ["RSI overbought", "OBI sell pressure building", "Already at max 3 open positions"]
+    }
+  }
+]
