@@ -71,9 +71,17 @@ After `build_pods.py` runs, it prints your CIDs:
 **Submission steps:**
 
 1. Go to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) and connect your wallet
-2. Submit your CIDs (one per pod type)
-3. Include your `agent_id` and epoch timestamp
-4. Confirm — your contribution is recorded on-chain
+2. For each pod type, provide:
+   - **Title** — e.g., "T1 Trades Epoch 2026-04-18"
+   - **Description** — brief summary of what's in this pod (required)
+   - **CID** — your IPFS content identifier in HTTPS format, e.g., `https://ipfs.io/ipfs/bafybeig...` (required)
+   - **Image** — optional but recommended: a thumbnail/logo for your pod
+3. Submit — your contribution is recorded on-chain
+
+**CID format:** The CID must be a valid IPFS HTTP gateway URL. When `build_pods.py` pins your pod, it returns a base CID (e.g., `bafybeig...`). Prepend `https://ipfs.io/ipfs/` to create the full URL:
+```
+https://ipfs.io/ipfs/bafybeigyour_cid_here
+```
 
 Reppo validates the pod schema and cross-references on-chain data where possible. If your trades are on Hyperliquid, they're fully verifiable.
 
