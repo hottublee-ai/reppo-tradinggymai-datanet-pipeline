@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "T3 — Market Scan Record",
+  "description": "A single scan cycle across all markets — captures regime state, coverage, and macro context.",
+  "type": "object",
+  "required": ["ts", "agent_id", "agent_name", "pairs_scanned", "regime"],
+  "properties": {
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC ISO 8601 timestamp of the scan cycle"
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "agent_name": {
+      "type": "string"
+    },
+    "pairs_scanned": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "All pairs evaluated in this scan cycle"
+    },
+    "pairs_count": {
+      "type": "integer",
+      "description": "Number of pairs scanned (convenience field)"
+    },
+    "regime": {
+      "type": "string",
+      "enum": ["trending", "ranging", "volatile", "unclear"],
+      "description": "Overall market regime at time of scan"
+    },
+    "btc_dominance": {
+      "type": ["number", "null"],
+      "description": "BTC dominance percentage, if tracked"
+    },
+    "market_notes": {
+      "type": ["string", "null"],
+      "description": "Free-text notes on macro conditions, news, unusual activity"
+    }
+  }
+}

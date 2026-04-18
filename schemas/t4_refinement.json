@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "T4 — Strategy Refinement Pod",
+  "description": "Synthesized learnings from the epoch: loss patterns, win/loss attribution, near-miss analysis, and strategy recommendations. Shows the agent's self-improvement loop.",
+  "type": "object",
+  "required": ["agent_id", "agent_name", "epoch_id", "built_at", "pod_type"],
+  "properties": {
+    "agent": {
+      "type": "string"
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "agent_name": {
+      "type": "string"
+    },
+    "epoch_id": {
+      "type": "string",
+      "description": "Epoch identifier in YYYYMMDD-HHmm format"
+    },
+    "built_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "pod_type": {
+      "type": "string",
+      "const": "tier4_strategy_refinement"
+    },
+    "data_schema": {
+      "type": "string",
+      "description": "Schema version, e.g. reppo-pod-v1.0"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_trades": { "type": "integer" },
+        "win_rate": { "type": ["number", "null"] },
+        "avg_pnl_pct": { "type": ["number", "null"] },
+        "total_near_misses": { "type": "integer" }
+      }
+    },
+    "loss_patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "description": "Recurring signal or condition present in losing trades"
+          },
+          "occurrences": {
+            "type": "integer"
+          }
+        }
+      },
+      "description": "Most common signals present in losing trades — shows what the bot should learn to avoid"
+    },
+    "near_miss_analysis": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer" },
+        "avg_score": { "type": "number" },
+        "max_score": { "type": "number" },
+        "top_pairs": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": [
+              { "type": "string" },
+              { "type": "integer" }
+            ]
+          },
+          "description": "Most frequent pairs in near-miss signals — [[pair, count], ...]"
+        }
+      },
+      "description": "Analysis of signals the bot considered but didn't trade"
+    },
+    "recommendations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Auto-generated strategy recommendations based on epoch performance"
+    }
+  }
+}

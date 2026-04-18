@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "T1 — Executed Trade Record",
+  "description": "A single trade open or close event logged by PodLogger.log_trade() / log_close()",
+  "type": "object",
+  "required": ["type", "ts", "agent_id", "agent_name", "pair", "side"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["open", "close"],
+      "description": "Whether this record is a trade entry or exit"
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC ISO 8601 timestamp"
+    },
+    "agent_id": {
+      "type": "string",
+      "description": "Your agent ID on degen.virtuals.io or a unique identifier for your bot"
+    },
+    "agent_name": {
+      "type": "string",
+      "description": "Human-readable bot name"
+    },
+    "pair": {
+      "type": "string",
+      "description": "Trading pair symbol, e.g. BTC, ETH, SOL"
+    },
+    "side": {
+      "type": "string",
+      "enum": ["long", "short"]
+    },
+    "entry_price": {
+      "type": "number",
+      "description": "Entry price (required for open records)"
+    },
+    "exit_price": {
+      "type": "number",
+      "description": "Exit price (required for close records)"
+    },
+    "size_usd": {
+      "type": "number",
+      "description": "Notional trade size in USD"
+    },
+    "leverage": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Leverage multiplier (1 for spot)"
+    },
+    "score": {
+      "type": "number",
+      "description": "Signal conviction score at time of entry (your scale)"
+    },
+    "strategy": {
+      "type": "string",
+      "description": "Strategy label: swing, scalp, sniper, etc."
+    },
+    "signals": {
+      "type": "object",
+      "description": "Full signal context at time of entry — include everything your bot evaluated",
+      "properties": {
+        "rsi_1h": { "type": "number" },
+        "obi": { "type": "number" },
+        "atr_pct": { "type": "number" },
+        "reasons": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Human-readable reasons for the trade decision"
+        }
+      }
+    },
+    "take_profit_pct": {
+      "type": ["number", "null"],
+      "description": "Target take-profit as a decimal (0.02 = 2%)"
+    },
+    "stop_loss_pct": {
+      "type": ["number", "null"],
+      "description": "Stop-loss as a decimal (0.01 = 1%)"
+    },
+    "pnl_pct": {
+      "type": "number",
+      "description": "Realized PnL as a decimal (close records only)"
+    },
+    "hold_hours": {
+      "type": "number",
+      "description": "How long the position was held (close records only)"
+    },
+    "close_reason": {
+      "type": "string",
+      "enum": ["take_profit", "stop_loss", "patience_exit", "timeout", "manual", "circuit_breaker"],
+      "description": "Why the position was closed"
+    }
+  }
+}

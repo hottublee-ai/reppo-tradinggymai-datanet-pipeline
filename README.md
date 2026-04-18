@@ -1,165 +1,197 @@
-# 🧠 Reppo Pod Pipeline
+# 🧠 TradingGym AI — Reppo Pod Pipeline
 
-**Instrument your trading bot. Generate structured data pods. Contribute to the TradingGym AI datanet. Earn Reppo rewards.**
+**The data pipeline behind the TradingGym AI datanet. Instrument your bot. Contribute verifiable trading data. Earn Reppo rewards.**
 
-Built by [@Hottubleed](https://x.com/Hottubleed) — the same pipeline powering [hottubleeee](https://degen.virtuals.io/agents/565) and [HotBot](https://degen.virtuals.io/agents/702) on the Virtuals DegenClaw competition.
-
----
-
-## What is this?
-
-[Reppo](https://reppo.ai) is a decentralized AI training data marketplace. Trading bots that contribute high-quality, verifiable trade data earn rewards — and help train better AI models.
-
-This repo gives you everything you need to:
-
-1. **Instrument** your existing trading bot to capture trade data
-2. **Generate** structured IPFS pods (T1/T2/T3/T4 format)
-3. **Pin** them to the TradingGym AI datanet via Pinata
-4. **Submit** CIDs to Reppo every epoch
-
-No lock-in. Works with any bot, any exchange, any language.
+Built by [@Hottubleed](https://x.com/Hottubleed) — and running live on two agents in the [Virtuals DegenClaw $100K weekly competition](https://degen.virtuals.io).
 
 ---
 
-## The Pod Schema (T1–T4)
+## Why this exists
 
-Every epoch (48h) produces 4 pods:
+The [TradingGym AI datanet](https://tradinggym.ai) is a shared corpus of real autonomous trading behavior — entries, exits, near-misses, market scans, and strategy refinements. It's what trains better AI trading models.
 
-| Pod | Tier | What it contains |
+Right now, most trading bots generate this data and throw it away.
+
+This pipeline captures it, structures it into verifiable IPFS pods, and submits it to [Reppo](https://reppo.ai) — where you earn rewards for quality contributions.
+
+**Your bot is already generating the data. This pipeline just makes it count.**
+
+---
+
+## How the datanet works
+
+Every contributor runs this pipeline alongside their bot. Every 48 hours, you generate up to 4 pods:
+
+| Pod | Tier | What it captures |
 |-----|------|-----------------|
-| Pod 1 | T1 — Executed Trades | Every real entry + exit with full signal rationale |
-| Pod 2 | T2 — Close Calls | Signals that scored just below threshold (near-misses) |
-| Pod 3 | T3 — Scan Coverage | All markets × scan cycles + regime state |
-| Pod 4 | T4 — Strategy Refinement | Synthesized lessons: loss patterns, win/loss attribution, recommendations |
+| Pod 1 | T1 — Executed Trades | Every real entry + exit, with full signal rationale |
+| Pod 2 | T2 — Near-Misses | Signals evaluated but not traded (often the most valuable) |
+| Pod 3 | T3 — Scan Coverage | All markets × scan cycles + macro regime state |
+| Pod 4 | T4 — Strategy Refinement | Loss patterns, win attribution, auto-generated recommendations |
 
-T2 (near-misses) is often the most valuable tier — it shows what the bot *considered* and *why it passed*. That counterfactual signal is gold for training.
+These pods are pinned to IPFS via Pinata and submitted to Reppo. The data is permanent, verifiable, and auditable on-chain.
 
----
-
-## Setup Cost vs. Benefit
-
-| Aspect | What it takes | What you get |
-|--------|---------------|---------------|
-| **Time to wire in** | ~15-20 minutes | Drop-in logger, no bot rewrite |
-| **Running cost** | Free (Pinata free tier) | IPFS pinning + datanet submission |
-| **Ongoing effort** | 1 cron line, 5 min/week to submit CIDs | Continuous data capture, zero maintenance |
-| **Upside** | Reppo rewards for quality data | Your trades become verifiable, public track record |
+> **Why near-misses?** T2 data captures your bot's decision boundary — what it *almost* traded and why it didn't. That counterfactual signal is extremely rare and highly valuable for training. Most bots never log it. This pipeline does.
 
 ---
 
-## 🎥 Quick Setup Video
+## What you need
 
-Coming soon — a 60-second loom showing:
-1. Paste the logger into your existing bot
-2. Run `python build_pods.py --status`
-3. Watch the buffer counts go up
-4. See your first IPFS pod
+- A trading bot (any exchange, any language — Python wrapper included)
+- A free [Pinata](https://pinata.cloud) account for IPFS pinning
+- A [Reppo](https://reppo.ai) account to submit CIDs and earn rewards
 
-_If you want to be an early beta tester for the video, DM me._
+**Cost: free. Setup: ~15 minutes.**
 
 ---
 
-## Quickstart
+## Setup
 
-### 1. Install dependencies
+### 1. Clone and install
 
 ```bash
+git clone https://github.com/hottublee-ai/reppo-tradinggymai-datanet-pipeline.git
+cd reppo-tradinggymai-datanet-pipeline
 pip install -r requirements.txt
 ```
 
-### 2. Configure your agent
+### 2. Configure
 
 ```bash
 cp .env.example .env
-# Edit .env with your Pinata JWT and agent details
 ```
 
-### 3. Instrument your bot
+Edit `.env`:
 
-Drop the logger into your bot:
+```env
+PINATA_JWT=your_pinata_jwt_here      # from pinata.cloud — free tier is enough
+AGENT_NAME=MyBot                     # your bot's name
+AGENT_ID=your_agent_id               # your ID on degen.virtuals.io, or any unique string
+```
+
+### 3. Add 3 logging calls to your bot
 
 ```python
 from reppo_sdk import PodLogger
 
 logger = PodLogger(agent_id="your-agent-id", agent_name="MyBot")
 
-# Log an executed trade
+# When you open a trade:
 logger.log_trade(
-    pair="BTC",
-    side="long",
-    entry_price=84500.0,
-    size_usd=150.0,
-    leverage=5,
+    pair="BTC", side="long", entry_price=84500.0, size_usd=150.0, leverage=5,
     signals={"rsi_1h": 28.4, "obi": 0.61, "reasons": ["RSI oversold", "OBI buy"]},
-    score=6.2,
-    strategy="swing"
+    score=6.2, strategy="swing"
 )
 
-# Log a near-miss (signal evaluated but not taken)
+# When a signal scores but you don't trade it (near-miss):
 logger.log_near_miss(
-    pair="ETH",
-    side="long",
-    score=4.8,
-    threshold=5.5,
+    pair="ETH", side="long", score=4.8, threshold=5.5,
     signals={"rsi_1h": 35.1, "reasons": ["RSI mild", "EMA mixed"]},
     reason_not_traded="score_4.8_below_threshold_5.5"
 )
 
-# Log a trade close
+# When you close a trade:
 logger.log_close(
-    pair="BTC",
-    exit_price=85200.0,
-    pnl_pct=0.0083,
-    hold_hours=6.4,
-    close_reason="take_profit"
+    pair="BTC", exit_price=85200.0, pnl_pct=0.0083,
+    hold_hours=6.4, close_reason="take_profit"
 )
 ```
 
-### 4. Build and pin pods
+That's the full integration. Three calls. No bot rewrite required.
+
+### 4. Build and pin pods every epoch
 
 ```bash
-# Build pods for the last 48h epoch and pin to IPFS
+# Build last 48h epoch and pin to IPFS
 python3 build_pods.py
 
-# Dry run (preview without pinning)
+# Preview without pinning
 python3 build_pods.py --dry-run
 
-# Check buffer status
+# Check how much data you've accumulated
 python3 build_pods.py --status
 ```
 
-### 5. Set up the cron
+### 5. Automate with cron
 
 ```bash
-# Add to crontab — runs every 6 hours
+# Run every 6 hours — builds and pins when enough data has accumulated
 0 */6 * * * cd /path/to/reppo-tradinggymai-datanet-pipeline && python3 build_pods.py >> /tmp/pod_builder.log 2>&1
 ```
 
+### 6. Submit CIDs to Reppo
+
+After each build, you'll see:
+
+```
+────────────────────────────────────────────
+📌 Submit these CIDs to Reppo:
+   Pod 1 (T1 Trades):        bafybeig...
+   Pod 2 (T2 Near-misses):   bafybeih...
+   Pod 3 (T3 Scans):         bafybeii...
+   Pod 4 (T4 Refinement):    bafybeij...
+────────────────────────────────────────────
+```
+
+Go to [reppo.ai](https://reppo.ai), connect your wallet, and submit. That's your epoch contribution — 5 minutes of work, then the cron handles everything automatically.
+
+See [`docs/REPPO.md`](docs/REPPO.md) for the full submission walkthrough and reward breakdown.
+
 ---
 
-## Project Structure
+## Cost vs. benefit
+
+| | What it takes | What you get |
+|---|---|---|
+| **Setup** | ~15 minutes | Drop-in logger, no bot rewrite |
+| **Running cost** | Free (Pinata free tier) | IPFS pinning + datanet contribution |
+| **Ongoing effort** | 5 min/week to submit CIDs | Automatic data capture, zero maintenance |
+| **Upside** | Reppo rewards for quality data | Verifiable on-chain performance record |
+
+---
+
+## 🎥 Quick Setup (video coming soon)
+
+A 60-second walkthrough: paste the logger, run `build_pods.py --status`, watch the buffers fill up, submit your first epoch.
+
+*Want early access? DM [@Hottubleed](https://x.com/Hottubleed) on X.*
+
+---
+
+## Live example
+
+This pipeline is running right now on two agents in the Virtuals DegenClaw $100K competition:
+
+| Agent | ID | Strategy | Hyperliquid address |
+|---|---|---|---|
+| [hottubleeee](https://degen.virtuals.io/agents/565) | 565 | Scalp / sniper | `0x322bc1b25ade46238fc2bc9c34623ac6aed6b83a` |
+| [HotBot](https://degen.virtuals.io/agents/702) | 702 | Swing 16–24h | `0xf4f565665068ccc866960a5812c6e9e6fd3e44a4` |
+
+Both generate pods every 6 hours. Their on-chain trade history is publicly verifiable — anyone can cross-reference the pod data against Hyperliquid.
+
+---
+
+## Repo structure
 
 ```
 reppo-tradinggymai-datanet-pipeline/
-├── build_pods.py          # Main pod builder — run this every epoch
-├── build_t4_pods.py       # Deep strategy refinement (T4) builder
+├── build_pods.py             # Main CLI — build + pin epoch pods
 ├── reppo_sdk/
-│   ├── __init__.py
-│   ├── logger.py          # PodLogger — drop into your bot
-│   ├── builder.py         # Pod construction + IPFS pinning
-│   └── utils.py           # Watermarking, dedup, schema validation
+│   ├── logger.py             # PodLogger — drop this into your bot
+│   ├── builder.py            # Pod construction + IPFS pinning
+│   └── __init__.py
 ├── schemas/
-│   ├── t1_trade.json      # T1 record schema
-│   ├── t2_near_miss.json  # T2 record schema
-│   ├── t3_scan.json       # T3 record schema
-│   └── t4_refinement.json # T4 pod schema
+│   ├── t1_trade.json         # T1 record schema
+│   ├── t2_near_miss.json     # T2 record schema
+│   ├── t3_scan.json          # T3 record schema
+│   └── t4_refinement.json    # T4 pod schema
 ├── examples/
-│   ├── basic_bot.py       # Minimal bot with logging wired in
-│   └── hyperliquid_bot.py # Hyperliquid-specific example
+│   ├── basic_bot.py          # Minimal bot skeleton with logging
+│   └── hyperliquid_bot.py    # Full Hyperliquid perps example
 ├── docs/
-│   ├── SCHEMA.md          # Full pod schema reference
-│   ├── REPPO.md           # How Reppo rewards work
-│   └── CONTRIBUTING.md    # How to contribute data to the datanet
+│   ├── REPPO.md              # Reppo submission guide + reward breakdown
+│   ├── SCHEMA.md             # Full pod schema reference
+│   └── CONTRIBUTING.md       # How to contribute to the datanet
 ├── .env.example
 ├── requirements.txt
 └── README.md
@@ -167,32 +199,19 @@ reppo-tradinggymai-datanet-pipeline/
 
 ---
 
-## Real-World Example
+## Works with any bot
 
-This pipeline is live and running on two agents in the [Virtuals DegenClaw $100K weekly competition](https://degen.virtuals.io):
+The `PodLogger` writes flat JSONL files. Exchange-agnostic, language-agnostic (Python wrapper, raw schema works with anything). See:
 
-- **hottubleeee** (Agent 565) — scalp/sniper strategy
-- **HotBot** (Agent 702) — swing strategy, 16-24h holds
-
-Both run long-only with a patience exit protocol. Their pods are pinned to IPFS every 6 hours and submitted to the TradingGym AI datanet.
-
-You can verify their on-chain activity on Hyperliquid:
-- hottubleeee: `0x322bc1b25ade46238fc2bc9c34623ac6aed6b83a`
-
----
-
-## Why contribute data?
-
-- **Reppo rewards** — earn from the datanet for high-quality submissions
-- **Verifiable track record** — your data is on IPFS, permanently timestamped
-- **Better models** — contribute to AI that learns from real autonomous trading
-- **Reputation** — build a public, auditable record of your bot's performance
+- [`examples/basic_bot.py`](examples/basic_bot.py) — minimal skeleton, any exchange
+- [`examples/hyperliquid_bot.py`](examples/hyperliquid_bot.py) — full Hyperliquid perps example
+- [`schemas/`](schemas/) — raw JSON schemas if you want to implement in another language
 
 ---
 
 ## Contributing
 
-PRs welcome. If you're running a bot and want to contribute data to the network, open an issue — happy to help you get wired up.
+PRs welcome. If you're running a bot and want to plug into the datanet, open an issue — happy to help you get wired up.
 
 ---
 

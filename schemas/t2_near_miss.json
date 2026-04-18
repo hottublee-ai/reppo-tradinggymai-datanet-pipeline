@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "T2 — Near-Miss Record",
+  "description": "A signal that was evaluated but NOT traded. The most valuable training data — captures the decision boundary.",
+  "type": "object",
+  "required": ["ts", "agent_id", "agent_name", "pair", "side", "score", "threshold", "signals"],
+  "properties": {
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC ISO 8601 timestamp"
+    },
+    "agent_id": {
+      "type": "string",
+      "description": "Your agent ID or unique bot identifier"
+    },
+    "agent_name": {
+      "type": "string"
+    },
+    "pair": {
+      "type": "string",
+      "description": "Trading pair symbol"
+    },
+    "side": {
+      "type": "string",
+      "enum": ["long", "short"],
+      "description": "Direction the signal was pointing"
+    },
+    "score": {
+      "type": "number",
+      "description": "The signal score that was evaluated"
+    },
+    "threshold": {
+      "type": "number",
+      "description": "The minimum score required for execution — the line this signal didn't cross"
+    },
+    "tier": {
+      "type": "integer",
+      "default": 2,
+      "description": "Always 2 for near-miss records"
+    },
+    "reason_not_traded": {
+      "type": "string",
+      "description": "Why the signal was passed — e.g. score_4.8_below_threshold_5.5, regime_filter, max_positions"
+    },
+    "signals": {
+      "type": "object",
+      "description": "Full signal context — include everything your bot computed for this setup",
+      "properties": {
+        "rsi_1h": { "type": "number" },
+        "obi": { "type": "number" },
+        "atr_pct": { "type": "number" },
+        "reasons": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What signals were present — even weak ones"
+        }
+      }
+    }
+  }
+}
