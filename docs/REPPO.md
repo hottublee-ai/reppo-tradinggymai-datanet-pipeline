@@ -2,7 +2,7 @@
 
 ## What is Reppo?
 
-[Reppo](https://reppo.ai) is a decentralized AI training data marketplace built on top of the [TradingGym AI](https://tradinggym.ai) datanet. It pays contributors for high-quality, verifiable trading data — because that data is used to train better autonomous trading models.
+[Reppo](https://reppo.ai) is a decentralized AI training data marketplace. The [TradingGym AI subnet](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) pays contributors for high-quality, verifiable trading data — because that data is used to train better autonomous trading models.
 
 Your bot is generating this data right now. Most traders throw it away. With this pipeline, you capture it, structure it, and earn from it.
 
@@ -10,7 +10,9 @@ Your bot is generating this data right now. Most traders throw it away. With thi
 
 ## The TradingGym AI Datanet
 
-The datanet is a shared, on-chain record of autonomous trading agent behavior. Every pod you submit becomes part of the training corpus for the next generation of trading models.
+The datanet is a shared, on-chain record of autonomous trading agent behavior. Every pod you publish becomes part of the training corpus for the next generation of trading models.
+
+Live subnet: **[reppo.ai/subnets/cmnhuowns000bic04e16t6735](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735)**
 
 **Who runs it?**  
 The datanet is built and maintained by [@Hottubleed](https://x.com/Hottubleed) — with live bots already contributing data in the Virtuals Protocol $100K weekly competition.
@@ -50,13 +52,15 @@ Reppo rewards are based on **data quality and verifiability**, not just trade vo
 
 ---
 
-## How to Submit CIDs to Reppo
+## How to Submit Your CIDs to Reppo
+
+> **Pod submission is always manual — you publish your own pods. The pipeline never auto-submits on your behalf.**
 
 After `build_pods.py` runs, it prints your CIDs:
 
 ```
 ────────────────────────────────────────────
-📌 Submit these CIDs to Reppo:
+📌 Your pod CIDs are ready to submit:
    Pod 1 (T1 Trades):        bafybeig...
    Pod 2 (T2 Near-misses):   bafybeih...
    Pod 3 (T3 Scans):         bafybeii...
@@ -66,11 +70,10 @@ After `build_pods.py` runs, it prints your CIDs:
 
 **Submission steps:**
 
-1. Go to [reppo.ai](https://reppo.ai) and connect your wallet
-2. Navigate to **Submit Data** → **Trading Pods**
-3. Paste your CIDs (one per pod type)
-4. Include your `agent_id` and epoch timestamp
-5. Submit — your contribution is recorded on-chain
+1. Go to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) and connect your wallet
+2. Submit your CIDs (one per pod type)
+3. Include your `agent_id` and epoch timestamp
+4. Confirm — your contribution is recorded on-chain
 
 Reppo validates the pod schema and cross-references on-chain data where possible. If your trades are on Hyperliquid, they're fully verifiable.
 
@@ -78,12 +81,14 @@ Reppo validates the pod schema and cross-references on-chain data where possible
 
 ## Setting Up Your Reppo Account
 
-1. Go to [reppo.ai](https://reppo.ai)
+1. Go to the [TradingGym AI subnet](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735)
 2. Connect a wallet (the one associated with your trading agent)
 3. Register as a data contributor
-4. Start submitting epoch pods
+4. Build your first epoch pod with `build_pods.py`, then submit your CIDs
 
 If you're competing on [Virtuals DegenClaw](https://degen.virtuals.io), your agent wallet is already the right one to use — your on-chain trade history is your verifiability proof.
+
+> Your pods belong to you. The cron automates building and pinning to IPFS. You decide when to publish each epoch to the subnet.
 
 ---
 

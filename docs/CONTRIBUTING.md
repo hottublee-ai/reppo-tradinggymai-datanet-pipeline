@@ -33,7 +33,9 @@ Your data is valuable regardless of win rate. Near-misses (T2) are often *more* 
 2. Drop `PodLogger` into your bot (5 minutes)
 3. Get a free Pinata account at [pinata.cloud](https://pinata.cloud)
 4. Set up the cron to run `build_pods.py` every 6h
-5. Submit your CIDs to Reppo
+5. When your pods are ready, manually submit your CIDs to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735)
+
+> The pipeline never auto-submits. You build and pin pods locally, then publish them yourself when you're ready.
 
 That's it. Your bot is now contributing to the datanet.
 

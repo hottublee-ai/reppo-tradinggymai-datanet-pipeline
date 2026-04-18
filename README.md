@@ -8,11 +8,11 @@ Built by [@Hottubleed](https://x.com/Hottubleed) — and running live on two age
 
 ## Why this exists
 
-The [TradingGym AI datanet](https://tradinggym.ai) is a shared corpus of real autonomous trading behavior — entries, exits, near-misses, market scans, and strategy refinements. It's what trains better AI trading models.
+The [TradingGym AI datanet](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) is a shared corpus of real autonomous trading behavior — entries, exits, near-misses, market scans, and strategy refinements. It's what trains better AI trading models.
 
 Right now, most trading bots generate this data and throw it away.
 
-This pipeline captures it, structures it into verifiable IPFS pods, and submits it to [Reppo](https://reppo.ai) — where you earn rewards for quality contributions.
+This pipeline captures it, structures it into verifiable IPFS pods, and submits it to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) — where you earn rewards for quality contributions.
 
 **Your bot is already generating the data. This pipeline just makes it count.**
 
@@ -39,7 +39,7 @@ These pods are pinned to IPFS via Pinata and submitted to Reppo. The data is per
 
 - A trading bot (any exchange, any language — Python wrapper included)
 - A free [Pinata](https://pinata.cloud) account for IPFS pinning
-- A [Reppo](https://reppo.ai) account to submit CIDs and earn rewards
+- A wallet to submit CIDs to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) and earn rewards
 
 **Cost: free. Setup: ~15 minutes.**
 
@@ -119,13 +119,13 @@ python3 build_pods.py --status
 0 */6 * * * cd /path/to/reppo-tradinggymai-datanet-pipeline && python3 build_pods.py >> /tmp/pod_builder.log 2>&1
 ```
 
-### 6. Submit CIDs to Reppo
+### 6. Submit your CIDs to Reppo (manual step)
 
-After each build, you'll see:
+After each build, you'll see output like:
 
 ```
 ────────────────────────────────────────────
-📌 Submit these CIDs to Reppo:
+📌 Your pod CIDs are ready to submit:
    Pod 1 (T1 Trades):        bafybeig...
    Pod 2 (T2 Near-misses):   bafybeih...
    Pod 3 (T3 Scans):         bafybeii...
@@ -133,7 +133,9 @@ After each build, you'll see:
 ────────────────────────────────────────────
 ```
 
-Go to [reppo.ai](https://reppo.ai), connect your wallet, and submit. That's your epoch contribution — 5 minutes of work, then the cron handles everything automatically.
+**This step is manual — you submit your own pods.** Go to the [TradingGym AI subnet on Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735), connect your wallet, and paste your CIDs. That's your epoch contribution — about 5 minutes of work per epoch, then the cron handles data capture automatically.
+
+> **Note:** The pipeline never auto-submits to Reppo. Your pods are yours — you decide when and what to publish.
 
 See [`docs/REPPO.md`](docs/REPPO.md) for the full submission walkthrough and reward breakdown.
 
@@ -145,7 +147,7 @@ See [`docs/REPPO.md`](docs/REPPO.md) for the full submission walkthrough and rew
 |---|---|---|
 | **Setup** | ~15 minutes | Drop-in logger, no bot rewrite |
 | **Running cost** | Free (Pinata free tier) | IPFS pinning + datanet contribution |
-| **Ongoing effort** | 5 min/week to submit CIDs | Automatic data capture, zero maintenance |
+| **Ongoing effort** | 5 min/epoch to manually submit CIDs | Automatic data capture, zero maintenance |
 | **Upside** | Reppo rewards for quality data | Verifiable on-chain performance record |
 
 ---
@@ -216,4 +218,4 @@ MIT — use it, fork it, build on it.
 
 ---
 
-*Built on [Reppo](https://reppo.ai) × [TradingGym AI](https://tradinggym.ai) × [Virtuals Protocol](https://virtuals.io)*
+*Built on [Reppo](https://reppo.ai/subnets/cmnhuowns000bic04e16t6735) × [Virtuals Protocol](https://virtuals.io)*
