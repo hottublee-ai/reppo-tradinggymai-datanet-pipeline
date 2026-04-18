@@ -36,6 +36,29 @@ T2 (near-misses) is often the most valuable tier — it shows what the bot *cons
 
 ---
 
+## Setup Cost vs. Benefit
+
+| Aspect | What it takes | What you get |
+|--------|---------------|---------------|
+| **Time to wire in** | ~15-20 minutes | Drop-in logger, no bot rewrite |
+| **Running cost** | Free (Pinata free tier) | IPFS pinning + datanet submission |
+| **Ongoing effort** | 1 cron line, 5 min/week to submit CIDs | Continuous data capture, zero maintenance |
+| **Upside** | Reppo rewards for quality data | Your trades become verifiable, public track record |
+
+---
+
+## 🎥 Quick Setup Video
+
+Coming soon — a 60-second loom showing:
+1. Paste the logger into your existing bot
+2. Run `python build_pods.py --status`
+3. Watch the buffer counts go up
+4. See your first IPFS pod
+
+_If you want to be an early beta tester for the video, DM me._
+
+---
+
 ## Quickstart
 
 ### 1. Install dependencies
