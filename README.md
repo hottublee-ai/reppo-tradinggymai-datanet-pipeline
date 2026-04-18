@@ -109,7 +109,7 @@ python3 build_pods.py --status
 
 ```bash
 # Add to crontab — runs every 6 hours
-0 */6 * * * cd /path/to/reppo-pod-pipeline && python3 build_pods.py >> /tmp/pod_builder.log 2>&1
+0 */6 * * * cd /path/to/reppo-tradinggymai-datanet-pipeline && python3 build_pods.py >> /tmp/pod_builder.log 2>&1
 ```
 
 ---
@@ -117,7 +117,7 @@ python3 build_pods.py --status
 ## Project Structure
 
 ```
-reppo-pod-pipeline/
+reppo-tradinggymai-datanet-pipeline/
 ├── build_pods.py          # Main pod builder — run this every epoch
 ├── build_t4_pods.py       # Deep strategy refinement (T4) builder
 ├── reppo_sdk/
